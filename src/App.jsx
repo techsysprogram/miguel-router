@@ -1,36 +1,26 @@
-
+import { useEffect, useState } from 'react'
 import './App.css'
-import { useState } from 'react';
-
-
-function HomePage() {
-  return (
-    <>
-      <h1>home</h1>
-      <p>esta es una pagina de ejemeplo para desde zero</p>
-      
-      <a href="/about">ir a sobre nosotros</a>
-    </>
-  )
-}
-
-
-function AboutPage() {
-  return (
-    <>
-      <h1>about</h1>
-      <div>
-        <img src="https://picsum.photos/600/300" alt="images random" />
-      </div>
-      <p>hola estoy creando clon</p>
-      <a href="/">ir a home</a>
-    </>
-  )
-}
+import { EVENTS } from './assets/consts'
+import HomePage from './pages/Home'
+import AboutPage from './pages/About'
 
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname)
+
+  useEffect(() => {
+    const onLocationChange = () => {
+      setCurrentPath(window.location.pathname)
+    }
+    
+    window.addEventListener(EVENTS.PUSHSTATE, onLocationChange)
+    window.addEventListener(EVENTS.POPSTATE, onLocationChange)
+    
+    return () => {
+      window.removeEventListener(EVENTS.PUSHSTATE, onLocationChange)
+      window.removeEventListener(EVENTS.POPSTATE, onLocationChange)
+    }
+  }, [])
 
 
   return (
