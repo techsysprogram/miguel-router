@@ -17,6 +17,7 @@ export function navigate(href) {
       if (isMainEvent && isManageableEvent && !isModifiedEvent) {
         event.preventDefault();
         navigate(to); // navegación con SPA
+        //window.scrollTo(0, 0); // scroll top
       }
     };
   
