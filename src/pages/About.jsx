@@ -1,6 +1,6 @@
 import { Link } from "../Link.jsx";
 
-export default function AboutPage() {
+export default function AboutPage({routeParams}) {
   return (
     <>
       <h1>About</h1>
